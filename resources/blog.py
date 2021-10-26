@@ -2,11 +2,26 @@ from flask import Response, request
 from database.models import Blog
 from flask_restful import Resource
 
+#_________________________________________________________________________
+
+# Public Consumption -----------------------------------------------------
+#_________________________________________________________________________
+
 class BlogsApi(Resource):
     def get(self):
         blogs = Blog.objects().to_json()
         return Response(blogs, mimetype="application/json", status=200)
-    
+
+class BlogApi(Resource):
+    def get(self, id):
+        blog = Blog.objects.get(id=id).to_json()
+        return Response(blog, mimetype="application/json", status=200)
+#_________________________________________________________________________
+#_________________________________________________________________________
+
+# Authentication Required ------------------------------------------------
+#_________________________________________________________________________    
+
 class BlogsAdmin(Resource):
     def post(self):
         body = request.get_json()
@@ -18,11 +33,6 @@ class BlogsAdmin(Resource):
         Blog.objects().delete()
         return 'All blogs deleted', 200
 
-class BlogApi(Resource):
-    def get(self, id):
-        blog = Blog.objects.get(id=id).to_json()
-        return Response(blog, mimetype="application/json", status=200)
-
 class BlogAdmin(Resource):
     def put(self, id):
         body = request.get_json()
@@ -32,3 +42,5 @@ class BlogAdmin(Resource):
     def delete(self, id):
         Blog.objects.get(id=id).delete()
         return 'Blog Deleted', 200
+#_________________________________________________________________________
+#_________________________________________________________________________
