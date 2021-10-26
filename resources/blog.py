@@ -7,17 +7,23 @@ class BlogsApi(Resource):
         blogs = Blog.objects().to_json()
         return Response(blogs, mimetype="application/json", status=200)
     
+class BlogsAdmin(Resource):
     def post(self):
         body = request.get_json()
         blog = Blog(**body).save()
         id = blog.id
         return {'id': str(id)}, 200
+    
+    def delete(self):
+        Blog.objects().delete()
+        return 'All blogs deleted', 200
 
 class BlogApi(Resource):
     def get(self, id):
         blog = Blog.objects.get(id=id).to_json()
         return Response(blog, mimetype="application/json", status=200)
 
+class BlogAdmin(Resource):
     def put(self, id):
         body = request.get_json()
         Blog.objects.get(id=id).update(**body)
