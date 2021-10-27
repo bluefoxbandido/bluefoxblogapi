@@ -1,9 +1,8 @@
 from flask import Response, request
+
 from database.models import User
 from flask_restful import Resource
-
-import hashlib
-import os
+from flask_bcrypt import generate_password_hash, check_password_hash
 
 class UsersAdmin(Resource):
     def post(self):
@@ -13,21 +12,28 @@ class UsersAdmin(Resource):
         user.username = body["username"]
         user.admin = body["admin"]
 
-        salt = os.urandom(32)
-        password = body["password"]
-        key = hashlib.pbkdf2_hmac(
-            'sha256',
-            password.encode('utf-8'),
-            salt,
-            100000
-        )        
-
-        user.password = salt + key
+        pw_hash = generate_password_hash(body["password"].encode('utf-8'), 10)
+        user.password = pw_hash.decode('utf-8')
 
         user.save()
+        
+        return Response(user, mimetype="application/json", status=200)
+    
+    def get(self):
+        users = User.objects().to_json()
+        return Response(users, mimetype="application/json", status=200)
+    
+    def delete(self):
+        User.objects().delete()
 
-        return "success"
+        return "Database Cleared"
+    
+class UserLogin(Resource):
+    def post(self):
+        body = request.get_json()
+        user = User.objects.get(username = body["username"])
+        
+        
+        return check_password_hash(user.password, body["password"])
 
-# class UserLogin(Resource):
-#     def post(username, password):
         
