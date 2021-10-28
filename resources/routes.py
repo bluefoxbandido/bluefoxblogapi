@@ -1,8 +1,12 @@
 from .blog import BlogsApi, BlogApi, BlogsAdmin, BlogAdmin
 from .user import UsersAdmin, UserLogin
 
+from flask import jsonify
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
 def initialize_routes(api):
-# Public Routes----------------------------------------
+    # Public Routes----------------------------------------
+    api.add_resource(UserLogin, '/api/users/admin/login')
 
     # Blog --------------------------------------------
     api.add_resource(BlogsApi, '/api/blogs')
@@ -19,4 +23,4 @@ def initialize_routes(api):
 
     # User Routes -------------------------------------
     api.add_resource(UsersAdmin, '/api/users/admin')
-    api.add_resource(UserLogin, '/api/users/admin/login')
+
