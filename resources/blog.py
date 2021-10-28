@@ -45,6 +45,8 @@ class BlogAdmin(Resource):
     @jwt_required()
     def put(self, id):
         body = request.get_json()
+        
+        print(body)
         Blog.objects.get(id=id).update(**body)
         return 'Blog Updated', 200
 
