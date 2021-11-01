@@ -15,11 +15,11 @@ api = Api(app)
 
 
 app.config['MONGODB_SETTINGS'] = {
-    'host' : os.getenv('MONGO_URI')
+    'host' : os.environ.get('MONGO_URI')
 }
 
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
 
 
 initialize_db(app)
