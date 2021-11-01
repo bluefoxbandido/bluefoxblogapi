@@ -1,1 +1,1 @@
-web: waitress-serve --port=5000 -a bluefoxapi:app
+web: waitress-serve --port=5000 app:app
