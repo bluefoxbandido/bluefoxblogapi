@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
-print(os.environ['SECRET_KEY'])
+print(os.environ['MONGO_URI'])
 
 
 app.config['MONGODB_SETTINGS'] = {
