@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT bluefoxapi:app
+web: waitress-serve --port=$PORT --call app:app
