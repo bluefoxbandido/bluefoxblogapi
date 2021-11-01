@@ -9,7 +9,6 @@ from flask_jwt_extended import jwt_required
 # Public Consumption -----------------------------------------------------
 # _________________________________________________________________________
 
-
 class BlogsApi(Resource):
     def get(self):
         blogs = Blog.objects().to_json()
@@ -25,8 +24,6 @@ class BlogApi(Resource):
 
 # Authentication Required ------------------------------------------------
 # _________________________________________________________________________
-
-
 class BlogsAdmin(Resource):
     @jwt_required()
     def post(self):
