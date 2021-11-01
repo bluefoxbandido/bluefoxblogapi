@@ -33,4 +33,4 @@ if (__name__) == ('__main__'):
         print('Connected')
         serve(app, host='0.0.0.0', port=5000)
     except:
-        print("Error")
+        print("Error launching server.")
