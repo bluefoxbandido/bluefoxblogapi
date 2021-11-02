@@ -1,5 +1,4 @@
 from flask import Response, request
-from flask_cors.decorator import cross_origin
 from database.models import Blog
 from flask_restful import Resource
 
