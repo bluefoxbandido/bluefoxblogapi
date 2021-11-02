@@ -12,7 +12,7 @@ from flask_jwt_extended import jwt_required
 # _________________________________________________________________________
 
 class BlogsApi(Resource):
-    @cross_origin()
+    @cross_origin("*")
     def get(self):
         blogs = Blog.objects().to_json()
         return Response(blogs, mimetype="application/json", status=200)
