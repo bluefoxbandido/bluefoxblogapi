@@ -1,4 +1,5 @@
 from flask import Response, request
+from flask_cors.decorator import cross_origin
 from database.models import Blog
 from flask_restful import Resource
 
@@ -10,12 +11,14 @@ from flask_jwt_extended import jwt_required
 # _________________________________________________________________________
 
 class BlogsApi(Resource):
+    @cross_origin()
     def get(self):
         blogs = Blog.objects().to_json()
         return Response(blogs, mimetype="application/json", status=200)
 
 
 class BlogApi(Resource):
+    @cross_origin()
     def get(self, id):
         blog = Blog.objects.get(id=id).to_json()
         return Response(blog, mimetype="application/json", status=200)

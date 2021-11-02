@@ -12,7 +12,7 @@ import os
 
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*":{"origins": "*"}})
+CORS(app)
 api = Api(app)
 
 
