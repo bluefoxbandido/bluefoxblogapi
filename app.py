@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from waitress import serve
+from flask_cors import CORS
 
 from database.db import initialize_db
 from resources.routes import initialize_routes
@@ -11,6 +12,7 @@ import os
 
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*":{"origins": "*"}})
 api = Api(app)
 
 
