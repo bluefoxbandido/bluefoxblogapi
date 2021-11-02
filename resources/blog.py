@@ -15,6 +15,7 @@ class BlogsApi(Resource):
     @cross_origin()
     def get(self):
         blogs = Blog.objects().to_json()
+        blogs.headers.add("Access-Control-Allow-Origin", "*")
         return Response(blogs, mimetype="application/json", status=200)
 
 
