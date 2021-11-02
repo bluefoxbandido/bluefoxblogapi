@@ -5,7 +5,7 @@ from .user import UsersAdmin, UserLogin
 def initialize_routes(api):
 # Public Routes----------------------------------------
     # Blog --------------------------------------------
-    api.add_resource(BlogsApi, '/')
+    api.add_resource(BlogsApi, '/', methods=["GET"])
     api.add_resource(BlogApi, '/api/blogs/<id>')
 
     # User --------------------------------------------
