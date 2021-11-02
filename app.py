@@ -31,6 +31,6 @@ jwt = JWTManager(app)
 
 if (__name__) == ('__main__'):
     try:
-        serve(app)
+        serve(app, port=5000)
     except:
         print("Error launching server.")
