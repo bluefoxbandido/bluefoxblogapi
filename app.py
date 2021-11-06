@@ -9,16 +9,13 @@ from resources.routes import initialize_routes
 
 import os
 
-
-
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
 
-
 app.config['MONGODB_SETTINGS'] = {
-    'host' : os.environ['MONGO_URI']
+    'host': os.environ['MONGO_URI']
 }
 
 app.config['CORS_HEADERS'] = 'Content-Type'
