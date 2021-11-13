@@ -16,6 +16,7 @@ flask-mongoengine = "1.0.0"
 flask-pymongo = "2.3.0"
 flask-restful = "0.3.9"
 gunicorn = "*"
+marshmallow = "*"
 pillow = "8.4.0"
 waitress = "2.0.0"
 
