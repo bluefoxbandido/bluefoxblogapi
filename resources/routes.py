@@ -5,11 +5,11 @@ from .user import UsersAdmin, UserLogin
 def initialize_routes(api):
 # Public Routes----------------------------------------
     # Blog --------------------------------------------
-    api.add_resource(BlogsApi, '/api', methods=['GET', 'OPTIONS'])
-    api.add_resource(BlogApi, '/api/blogs/<id>')
+    api.add_resource(BlogsApi, '/api/blogs', methods=['GET'])
+    api.add_resource(BlogApi, '/api/blogs/<id>', methods=['GET'])
 
     # User --------------------------------------------
-    api.add_resource(UserLogin, '/api/admin/login')
+    api.add_resource(UserLogin, '/api/admin/login', methods=['POST'])
 
 
 # Authenticated Routes --------------------------------
